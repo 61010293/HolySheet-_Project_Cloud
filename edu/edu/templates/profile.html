@@ -2,6 +2,18 @@
 
 
 {% block content %}
+<ul class="menu">
+    <li class="menu-item"><a class="item" href="{% url 'index:sheet-preview' %}">Home</a></li>
+    <li class="menu-item"><a class="item" href="{% url 'sheets:sheet-list' %}">Sheet</a></li>
+    {% if request.user.is_authenticated %}
+    <li class="menu-item"><a class="item" href="{% url 'account_logout' %}">Logout</a></li>
+    
+    {% else %}
+    <li class="menu-item"><a class="item" href="{% url 'account_login' %}">Login</a></li>
+    <li class="menu-item"><a class="item" href="{% url 'account_signup' %}">Signup</a></li>
+    {% endif %}
+</ul>
+<div class="abc">
 <h1>Previous order</h1>
 <hr />
 
@@ -33,6 +45,6 @@
     
     
 </table>
-
+</div>
 
 {% endblock content %}

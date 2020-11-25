@@ -25,7 +25,7 @@ SECRET_KEY = 'l2lb%1p!)7@&u%(qni&66qgafh4s$hp*r01y!tx^624m2q+7cs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['holysheetcloud.herokuapp.com']
 
 
 # Application definition
@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'edu.urls'
@@ -86,10 +87,14 @@ WSGI_APPLICATION = 'edu.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
+DATABASES = {  
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dceaqaee4cm36c',
+        'USER': 'gdaxvghdhnnuyx',
+        'PASSWORD': '703476a89fab1f0f65584a899be8a3f554447e218a7ba987825b76b7e1943065',
+        'HOST': 'ec2-54-147-126-202.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -138,12 +143,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
 LOGIN_REDIRECT_URL = "/"
@@ -182,6 +188,8 @@ SOCIALACCOUNT_PROVIDERS = {
     
 }
 
+
+
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -189,3 +197,5 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 STRIPE_PUBLISH_KEY= 'pk_test_51HpyrhA2rOP4Mq0SkJ8lAOpSWnEarmLoKmNgAHhdnfMjGYr6KGdKmrooYFzZiHYjrb5kMmykRIP2ZCmBW6MGdtmc00YiuMxPvU'
 STRIPE_SECRET_KEY= 'sk_test_51HpyrhA2rOP4Mq0SoX0RnvDZSy8JOnXtCRD4YSU9Zhgak7mOB4W5OmEQJe9pU5HeRBue8IOO9lTAMcujOkEaUe2D00fAfs3pTs'
 
+import django_heroku
+django_heroku.settings(locals())
