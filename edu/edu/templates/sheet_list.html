@@ -22,7 +22,7 @@
 
     {% for sheet in queryset %}
     <div class="allsheet-item">
-      <a href="{{ sheet.get_absolute_url }}"><img src="{{ sheet.cover.url }}" class="allsheet-pic"></a>
+      <a href="{{ sheet.get_absolute_url }}"><img src="{{ sheet.cover.url }}" class="allsheet-pic"/></a>
       <div class="allsheet-info">
         <div>
           <h4>{{ sheet.title }}</h4>

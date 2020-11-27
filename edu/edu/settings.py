@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'storages',
     'edu',
     'sheets',
     'allauth',
@@ -143,14 +144,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+MEDIA_URL = '//s1g3-test-bucket.s3.us-east-2.amazonaws.com/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
 
 LOGIN_REDIRECT_URL = "/"
 
@@ -188,8 +190,16 @@ SOCIALACCOUNT_PROVIDERS = {
     
 }
 
+AWS_QUERYSTRING_AUTH = False
+AWS_ACCESS_KEY_ID = 'AKIAY77SVUKN3UJMYX4Z'
+AWS_SECRET_ACCESS_KEY = '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'
 
-
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_S3_PATH = "media"
+AWS_STORAGE_BUCKET_NAME = 's1g3-test-bucket'
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_SECURE_URLS = False
+AWS_DEFAULT_ACL='public-read'
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
